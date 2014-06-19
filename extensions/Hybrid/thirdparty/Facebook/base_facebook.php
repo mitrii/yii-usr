@@ -940,9 +940,6 @@ abstract class BaseFacebook
 
     curl_setopt_array($ch, $opts);
     $result = curl_exec($ch);
-		if( $result === FALSE ) {
-				Hybrid_Logger::error( "BaseFacebook::makeRequest(). curl_exec error: ", curl_error($ch) );
-		}
 
     if (curl_errno($ch) == 60) { // CURLE_SSL_CACERT
       self::errorLog('Invalid or no certificate authority found, '.
@@ -1177,6 +1174,8 @@ abstract class BaseFacebook
     }
     return $this->getHttpHost();
   }
+
+  /**
 
   /**
    * Returns the Current URL, stripping it of known FB parameters that should
